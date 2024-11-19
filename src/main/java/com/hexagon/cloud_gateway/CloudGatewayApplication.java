@@ -26,17 +26,12 @@ public class CloudGatewayApplication {
     }
 
     @Bean
- public RouteLocator routeLocator(RouteLocatorBuilder builder) {
-  return builder
+    public RouteLocator routeLocator(RouteLocatorBuilder builder) {
+    return builder
     .routes()
     .route(r -> r.path("/event-service/v3/api-docs").and().method(HttpMethod.GET).uri("lb://EVENTS"))
     .route(r -> r.path("/notification-service/v3/api-docs").and().method(HttpMethod.GET).uri("lb://NOTIFICATIONS"))
     .build();
  }
-  
-
-
-   
-
 }
 
