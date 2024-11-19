@@ -16,8 +16,7 @@ spring:
         - id: NOTIFICATIONS
           uri: lb://NOTIFICATIONS
           predicates:
-            - Path=/api/notifications
-            - Path=/websocket
+            - Path=/api/notifications , /websocket
 springdoc:
   enable-native-support: true
   api-docs:
