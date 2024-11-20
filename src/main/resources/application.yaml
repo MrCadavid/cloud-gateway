@@ -8,15 +8,32 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          "[/**]":
+            allowedOriginPatterns:
+              - "http://localhost:*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+            allowedHeaders:
+              - "*"
+            exposedHeaders:
+              - "Authorization"
+            allowCredentials: true
       routes:
         - id: EVENTS
           uri: lb://EVENTS
           predicates:
-            - Path=/api/events
+            - Path=/api/events/**
         - id: NOTIFICATIONS
           uri: lb://NOTIFICATIONS
           predicates:
-            - Path=/api/notifications , /websocket
+            - Path=/api/notifications/** , /websocket
+            
 springdoc:
   enable-native-support: true
   api-docs:
